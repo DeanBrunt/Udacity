@@ -1,0 +1,23 @@
+{% extends "boilerplate.html" %}
+
+{% block head %}
+	<title>Add Successful!</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					<div class="alert alert-success" role="alert">
+						<h2>Bazinga!</h2>
+						<p>{{message}}</p>
+					</div>
+					<a href="{{referrer}}">Add Another</a>
+					<br>
+					<a href="{{url_for('homePage')}}">Head Home</a>
+				</div>
+			</div>
+		</div>	
+	</div>
+{% endblock %}

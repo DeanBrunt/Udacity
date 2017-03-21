@@ -1,0 +1,20 @@
+{% extends "boilerplate.html" %}
+
+{% block head %}
+	<title>{{error.title}}</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					<div class="alert alert-danger" role="alert">
+						<h2>{{error.head}}</h2>
+						<p>{{error.body}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

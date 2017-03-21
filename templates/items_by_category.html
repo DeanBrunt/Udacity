@@ -1,0 +1,28 @@
+{% extends "boilerplate.html" %}
+
+{% block head %}
+	<title>Items in {{category.name}}</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					{% if items %}
+						<ul class="list-group">
+							{% for item in items %}
+								<li class="list-group-item"><a href="{{url_for('itemByItem', item_id=item.id, category_id=category.id)}}">{{item.name}}</a></li>
+							{% endfor %}
+						</ul>
+					{% else %}
+						<div class="alert alert-info">
+							<h2>Aw snap!</h2>
+							<p>This category has no items yet <i class="material-icons">sentiment_very_dissatisfied</i></p>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

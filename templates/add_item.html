@@ -1,0 +1,58 @@
+{% extends "boilerplate.html" %}
+
+{% block head %}
+	<title>Add an Item</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					<h1>Add an Item</h1>
+					<p>Use this page to add a new item to the site!</p>
+					<form method="post" action="{{url_for('addItem')}}">
+						<div class="form-group {{name_error_class}}">
+							<label for="itemName">Name</label>
+							<input type="text" class="form-control" id="itemName" name="itemName" placeholder="Item Name" required aria-describedby="name-help" value="{{name}}">
+							<span id="name-help" class="help-block">{{name_error}}</span>
+						</div>
+						<div class="form-group {{category_error_class}}">
+							<label for="itemCategory">Category</label>
+							<select class="form-control" id="itemCategory" name="itemCategory" required aria-describedby="category-help">
+								<option disabled selected value="">Please Select</option>
+								{% if categories %}
+									{% for category in categories %}
+										{% if chosenCategory == category.name %}
+											<option value="{{category.name}}" selected>{{category.name}}</option>
+										{% else %}
+											<option value="{{category.name}}">{{category.name}}</option>
+										{% endif %}
+									{% endfor %}
+								{% else %}
+									<option value="Uncategorised">Uncategorised</option>
+								{% endif %}
+							</select>
+							<span id="category-help" class="help-block">{{category_error}}</span>
+						</div>
+						<div class="form-group {{price_error_class}}">
+							<label for="itemPrice">Price</label>
+							<div class="input-group">
+								<div class="input-group-addon">£</div>
+								<input type="text" class="form-control" id="itemPrice" name="itemPrice" required aria-describedby="itemHelp" value="{{price}}">
+							</div>
+							<span id="itemHelp" class="help-block">{{price_error}}</span>
+						</div>
+						<div class="form-group {{desc_error_class}}">
+							<label for="itemDesc">Description</label>
+							<textarea class="form-control" id="itemDesc" name="itemDesc" placeholder="Description" required aria-describedby="desc-help">{{desc}}</textarea>
+							<span id="desc-help" class="help-block">{{desc_error}}</span>
+						</div>
+						<input type="submit" class="btn btn-default" value="Add">
+						<a href="{{url_for('homePage')}}" class="btn btn-default">Cancel</a>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+{% endblock %}

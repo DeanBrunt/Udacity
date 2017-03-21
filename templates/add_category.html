@@ -1,0 +1,27 @@
+{% extends "boilerplate.html" %}
+
+{% block head %}
+	<title>Add a Category</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					<h1>Add a Category</h1>
+					<p>Use this page to add a new item category to the site!</p>
+					<form method="post" action="{{url_for('addCategory')}}">
+						<div class="form-group {{name_error_class}}">
+							<label for="categoryName">Name</label>
+							<input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Category Name" required aria-describedby="name-help">
+							<span id="name-help" class="help-block">{{name_error}}</span>
+						</div>
+						<input type="submit" class="btn btn-default" value="Add">
+						<a href="{{url_for('homePage')}}" class="btn btn-default">Cancel</a>
+					</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+{% endblock %}

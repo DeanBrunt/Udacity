@@ -1,0 +1,25 @@
+{% extends "boilerplate.html" %}
+
+{% block head %}
+	<title>Delete Item "{{item.name}}"</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					<h3>Are you sure you want to delete item "{{item.name}}" from category "{{category.name}}"?</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<form method="post" action="{{url_for('deleteItem', item_id=item.id)}}">
+					<button type="submit" class="btn btn-danger">Yes</button>
+					<a href="{{url_for('itemByItem', category_id=category.id, item_id=item.id)}}" class="btn btn-primary">No</a>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

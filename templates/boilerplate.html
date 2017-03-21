@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% block head %}
+		{% endblock %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <!-- Bootstrap's Core CSS -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      	rel="stylesheet"> <!-- Material Icon's Font -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+		<style>
+			.navbar-nav>li>a.profile-image {
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+
+			.navbar-nav>li>a.profile-image>img {
+				width: 30px;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-nav-collapse" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{{url_for('homePage')}}">Brand</a>
+				</div>
+				<div class="collapse navbar-collapse" id="top-nav-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage Catalog <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{{url_for('addCategory')}}">Add Category</a></li>
+								<li><a href="{{url_for('addItem')}}">Add Item</a></li>
+							</ul>
+						</li>
+						{% if 'email' in login_session %}
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{login_session['picture']}}" alt="profile picture" class="img-circle"></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{{url_for('gdisconnect')}}">Log Out</a>
+									</li>
+								</ul>
+							</li>
+						{% else %}
+							<li>
+								<a href="{{url_for('showLogin')}}">Log In</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		{% block body %}
+		{% endblock %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <!-- jQuery v1.12.4 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!-- Bootstrap's Core JS -->
+	</body>
+</html>
